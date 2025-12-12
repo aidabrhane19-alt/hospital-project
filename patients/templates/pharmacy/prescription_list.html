@@ -1,0 +1,14 @@
+<h2>Prescriptions</h2>
+
+<a href="{% url 'add_prescription' %}">Create Prescription</a>
+
+<ul>
+    {% for p in prescriptions %}
+        <li>
+            {{ p.patient.name }} - {{ p.doctor.name }} ({{ p.date }})
+            <a href="{% url 'add_prescription_item' p.id %}">View Items</a>
+        </li>
+    {% empty %}
+        <li>No prescriptions found.</li>
+    {% endfor %}
+</ul>
