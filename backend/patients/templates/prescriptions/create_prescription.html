@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Prescription</title>
+</head>
+<body>
+
+<h2>Create Prescription for {{ patient.name }}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Notes:</label><br>
+    <textarea name="notes" rows="4" cols="50"></textarea><br><br>
+
+    <h3>Add Medications</h3>
+
+    <div id="medication-list">
+        <div class="med-row">
+            <select name="medication">
+                {% for med in medications %}
+                <option value="{{ med.id }}">{{ med.name }}</option>
+                {% endfor %}
+            </select>
+
+            <input type="text" name="dosage" placeholder="Dosage (e.g. 2x daily)" required>
+            <input type="text" name="duration" placeholder="Duration (e.g. 7 days)" required>
+        </div>
+    </div>
+
+    <br>
+
+    <button type="button" onclick="addMedication()">Add Another Medication</button>
+    <br><br>
+
+    <button type="submit">Save Prescription</button>
+</form>
+
+<script>
+function addMedication() {
+    const container = document.getElementById("medication-list");
+    const row = document.querySelector(".med-row").cloneNode(true);
+    container.appendChild(row);
+}
+</script>
+
+</body>
+</html>
