@@ -80,8 +80,9 @@ Installation
 
 Clone the repository
 
-githttps://github.com/aidabrhane19-alt/hospital-project
+git clone https://github.com/aidabrhane19-alt/hospital-project.git
 cd Hospital-Management-System
+
 
 Set up Python backend (Django)
 
