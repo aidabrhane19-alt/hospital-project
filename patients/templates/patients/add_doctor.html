@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Patient</title>
+    <title>Add Doctor</title>
 </head>
 <body>
-    <h1>Add Patient</h1>
+    <h1>Add Doctor</h1>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Save Patient</button>
+        <button type="submit">Save Doctor</button>
     </form>
-    <a href="{% url 'patient_list' %}">Back to Patient List</a>
+    <a href="{% url 'doctor_list' %}">Back to Doctor List</a>
 </body>
 </html>
-
