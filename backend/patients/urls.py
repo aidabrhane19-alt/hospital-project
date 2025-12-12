@@ -1,8 +1,9 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from django.contrib.auth import views as auth_views
 from .views import (
     patient_list, add_patient, edit_patient, delete_patient,
-     doctor_list, add_doctor, edit_doctor, delete_doctor,
+    doctor_list, add_doctor, edit_doctor, delete_doctor,
     appointment_list, add_appointment, edit_appointment, delete_appointment,
     medication_list, add_medication, prescription_list, 
     add_prescription_item, pharmacy_dashboard, mark_dispensed,
@@ -23,8 +24,11 @@ urlpatterns = [
     path('edit/<int:pk>/', edit_patient, name='edit_patient'),
     path('delete/<int:pk>/', delete_patient, name='delete_patient'),
 
-    # Auth
-    
+    # HTML Login / Logout
+    path('login/', auth_views.LoginView.as_view(template_name='patients/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+
+    # API login
     path('api/login/', CustomAuthToken.as_view(), name='api_login'),
 
     # Dashboards
@@ -46,18 +50,14 @@ urlpatterns = [
     path('appointments/<int:pk>/edit/', edit_appointment, name='edit_appointment'),
     path('appointments/<int:pk>/delete/', delete_appointment, name='delete_appointment'),
 
-    # Pharmacy Dashboard
+    # Pharmacy
     path('pharmacy/', pharmacy_dashboard, name='pharmacy_dashboard'),
-
-    # Medications
     path('pharmacy/medications/', medication_list, name='medication_list'),
     path('pharmacy/medications/add/', add_medication, name='add_medication'),
-
-    # Prescriptions
     path('pharmacy/prescriptions/', prescription_list, name='prescription_list'),
     path('pharmacy/prescriptions/<int:pk>/items/', add_prescription_item, name='add_prescription_item'),
     path('pharmacy/dispense/<int:prescription_id>/', mark_dispensed, name='mark_dispensed'),
 
-    # API
+    # API router
     path('api/', include(router.urls)),
 ]

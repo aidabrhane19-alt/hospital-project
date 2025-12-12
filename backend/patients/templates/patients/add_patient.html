@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Add Patient</title>
 </head>
 <body>
-    <h1>Add New Patient</h1>
-
+    <h1>Add Patient</h1>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Save</button>
+        <button type="submit">Save Patient</button>
     </form>
-
-    <p><a href="/">Back to patient list</a></p>
+    <a href="{% url 'patient_list' %}">Back to Patient List</a>
 </body>
 </html>
+

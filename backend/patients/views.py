@@ -31,6 +31,8 @@ def receptionist_required(view_func):
 def pharmacist_required(view_func):
     return user_passes_test(lambda u: u.role == 'pharmacist')(view_func)
 
+def receptionist_or_admin_required(view_func):
+    return user_passes_test(lambda u: u.role in ['receptionist', 'admin'])(view_func)
 
 # =======================
 # HTML Views
@@ -142,7 +144,7 @@ def appointment_list(request):
 
 
 @login_required
-@receptionist_required
+@receptionist_or_admin_required
 def add_appointment(request):
     if request.method == 'POST':
         form = AppointmentForm(request.POST)
@@ -155,7 +157,7 @@ def add_appointment(request):
 
 
 @login_required
-@receptionist_required
+@receptionist_or_admin_required
 def edit_appointment(request, pk):
     appointment = get_object_or_404(Appointment, id=pk)
     if request.method == 'POST':
@@ -169,7 +171,7 @@ def edit_appointment(request, pk):
 
 
 @login_required
-@receptionist_required
+@receptionist_or_admin_required
 def delete_appointment(request, pk):
     appointment = get_object_or_404(Appointment, id=pk)
     if request.method == 'POST':
