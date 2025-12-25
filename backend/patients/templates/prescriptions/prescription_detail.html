@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prescription Details</title>
+</head>
+<body>
+
+<h2>Prescription #{{ prescription.id }}</h2>
+
+<p><strong>Patient:</strong> {{ prescription.patient.name }}</p>
+<p><strong>Doctor:</strong> {{ prescription.doctor.name }}</p>
+<p><strong>Date:</strong> {{ prescription.date }}</p>
+
+<h3>Medications</h3>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Medication</th>
+        <th>Dosage</th>
+        <th>Duration</th>
+    </tr>
+
+    {% for item in items %}
+    <tr>
+        <td>{{ item.medication.name }}</td>
+        <td>{{ item.dosage }}</td>
+        <td>{{ item.duration }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>Notes</h3>
+<p>{{ prescription.notes }}</p>
+
+</body>
+</html>

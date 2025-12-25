@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pharmacist Dashboard</title>
+</head>
+<body>
+<h1>Pharmacist Dashboard</h1>
+
+<h2>Pending Prescriptions</h2>
+<table border="1" cellpadding="8">
+    <tr>
+        <th>ID</th>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    {% for prescription in Prescription.objects.all|dictsort:"date" %}
+    <tr>
+        <td>{{ prescription.id }}</td>
+        <td>{{ prescription.patient.name }}</td>
+        <td>{{ prescription.doctor.name }}</td>
+        <td>{{ prescription.date }}</td>
+        <td>{{ prescription.status }}</td>
+        <td>
+            {% if prescription.status == 'pending' %}
+            <a href="{% url 'mark_dispensed' prescription.id %}">Mark as Dispensed</a>
+            {% else %}
+            Dispensed
+            {% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="6">No prescriptions pending.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Medications Stock</h2>
+<ul>
+    {% for med in Medication.objects.all %}
+        <li>{{ med.name }} - Stock: {{ med.stock }}</li>
+    {% empty %}
+        <li>No medications available.</li>
+    {% endfor %}
+</ul>
+
+<br>
+<a href="{% url 'logout' %}">Logout</a
