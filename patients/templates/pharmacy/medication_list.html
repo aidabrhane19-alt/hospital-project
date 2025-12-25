@@ -1,0 +1,11 @@
+<h2>Medications</h2>
+
+<a href="{% url 'add_medication' %}">Add Medication</a>
+
+<ul>
+    {% for m in meds %}
+        <li>{{ m.name }} - Stock: {{ m.stock }}</li>
+    {% empty %}
+        <li>No medications.</li>
+    {% endfor %}
+</ul>
