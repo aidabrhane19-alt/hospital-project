@@ -1,9 +1,0 @@
-<h2>Edit Appointment</h2>
-
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Update</button>
-</form>
-
-<a href="{% url 'appointment_list' %}">Back</a>
