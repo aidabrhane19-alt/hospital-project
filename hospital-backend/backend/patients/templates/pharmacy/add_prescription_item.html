@@ -1,0 +1,22 @@
+<h2>Add Medication to Prescription</h2>
+
+<p>Patient: {{ prescription.patient.name }}</p>
+<p>Doctor: {{ prescription.doctor.name }}</p>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Medication</button>
+</form>
+
+<h3>Current Items:</h3>
+
+<ul>
+    {% for item in items %}
+        <li>{{ item.medication.name }} - {{ item.dosage }} (Qty: {{ item.quantity }})</li>
+    {% empty %}
+        <li>No items yet.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'prescription_list' %}">Finish</a>
