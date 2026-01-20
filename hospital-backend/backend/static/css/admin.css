@@ -1,0 +1,75 @@
+/* =========================
+   ADMIN FORM STYLES
+   ========================= */
+
+body {
+    background-color: #f8f9fa;
+}
+
+.admin-form {
+    max-width: 650px;
+    margin: auto;
+    background-color: #f3efff;
+    padding: 30px 35px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 6px 15px rgba(108, 99, 255, 0.15);
+}
+
+.admin-form h3 {
+    font-weight: 600;
+    color: #212529;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 10px;
+}
+
+/* Django form fields */
+.admin-form label {
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #343a40;
+}
+
+.admin-form input,
+.admin-form select,
+.admin-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    margin-bottom: 15px;
+}
+
+.admin-form input:focus,
+.admin-form select:focus,
+.admin-form textarea:focus {
+    border-color: #0d6efd;
+    outline: none;
+    box-shadow: 0 0 0 0.15rem rgba(13,110,253,.15);
+}
+
+/* Buttons */
+.btn-submit {
+    background-color: #0d6efd;
+    color: #ffffff;
+    padding: 10px 22px;
+    border-radius: 6px;
+    border: none;
+}
+
+.btn-submit:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.btn-cancel {
+    background-color: #6c757d;
+    color: #ffffff;
+    padding: 10px 22px;
+    border-radius: 6px;
+}
+
+.btn-cancel:hover {
+    background-color: #495057;
+    color: #ffffff;
+}
