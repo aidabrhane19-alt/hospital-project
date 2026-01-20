@@ -30,7 +30,7 @@ Role-Based Access: Admin, Doctor, Receptionist, Pharmacist.
 
 Authentication: Login and logout functionality.
 
-Patient Management:
+Patient Management
 
 Add new patient details (name, age, gender, contact info, address, medical history).
 
@@ -38,7 +38,7 @@ Update or delete patient records.
 
 Search and retrieve patient information.
 
-Doctor Management:
+Doctor Management
 
 Add, update, or delete doctor details (name, specialization, availability, contact info).
 
@@ -46,7 +46,7 @@ Assign doctors to patients.
 
 View doctor schedules and appointments.
 
-Appointment Management:
+Appointment Management
 
 Schedule new appointments (patient ID, doctor ID, date, time, purpose).
 
@@ -54,13 +54,17 @@ Update or cancel appointments.
 
 View upcoming appointments for patients and doctors.
 
-Medical Records: Maintain patient medical history linked to both patients and doctors.
+Medical Records
 
-Staff Management: Add and manage staff details (nurses, receptionists, technicians, etc.).
+Maintain patient medical history linked to both patients and doctors.
+
+Staff Management
+
+Add and manage staff details (nurses, receptionists, technicians, etc.).
 
 Technology Stack
 Layer	Technology
-Frontend	React.js
+Frontend	Django Templates, HTML, CSS
 Backend	Django (Python)
 Database	SQLite (development) / PostgreSQL (production)
 Authentication	Django Auth with role-based access
@@ -68,24 +72,20 @@ Styling	CSS / TailwindCSS (if applicable)
 API	RESTful API using Django REST Framework
 Architecture
 
-Frontend: React for dynamic and responsive user interfaces.
+Frontend: Django templates for dynamic and responsive user interfaces.
 
 Backend: Django handles authentication, database management, API endpoints, and role-based logic.
 
 Database: Stores patient, doctor, staff, appointments, and medical record information.
 
-Communication: REST API connects frontend and backend.
+Communication: Backend serves HTML pages directly; REST API supports additional integrations if needed.
 
 Installation
-
 Clone the repository
-
 git clone https://github.com/aidabrhane19-alt/hospital-project.git
 cd Hospital-Management-System
 
-
 Set up Python backend (Django)
-
 python -m venv venv
 source venv/bin/activate   # Linux/Mac
 venv\Scripts\activate      # Windows
@@ -93,39 +93,30 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 
+Open your browser
 
-Set up React frontend
+Backend: http://127.0.0.1:8000/
 
-cd frontend
-npm install
-npm start
-
-
-Open your browser:
-
-Backend API: http://127.0.0.1:8000/
-
-Frontend UI: http://localhost:3000/
+Note: No separate frontend framework is used; all user interfaces are served via Django templates.
 
 Usage
 
-Admin can manage patients, doctors, staff, and appointments.
+Admin: Manage patients, doctors, staff, and appointments.
 
-Doctors can view schedules, manage appointments, and update medical records.
+Doctor: View schedules, manage appointments, and update medical records.
 
-Receptionists can schedule appointments and manage patient information.
+Receptionist: Schedule appointments and manage patient information.
 
-Pharmacists can access prescription-related data if extended.
+Pharmacist: Access prescription-related data.
 
 Contributors
 
-birtukan,birtquan,ayda– Backend (Django, REST API)
+Backend (Django, REST API): Birtukan, Birtquan, Ayda
 
-mleat, adanech– Frontend (React)
-
-Team members – birtquan tetemke, birtukan  g/kidan, ayda brhane, mleat aregawi, adanech mokenen
+Team Members: Birtquan Tetemke, Birtukan G/Kidan, Ayda Brhane, Mleat Aregawi, Adanech Mokenen
 
 License
 
-This project is licensed under the MIT License – see the LICENSE
+This project is licensed under the MIT License see the LICENSE
  file for details.
+
