@@ -1,0 +1,49 @@
+{% extends "base_public.html" %}
+{% load static %}
+
+{% block title %}Login | Shalom Primary Hospital{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="login-card col-md-5 p-4 shadow rounded bg-white">
+        <div class="text-center mb-4">
+            <img src="{% static 'images/shalom_logo.png' %}" alt="Shalom Hospital" width="120">
+            <h3 class="mt-2">Shalom Primary Hospital</h3>
+            <p class="text-muted">Role-Based Login Portal</p>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" name="username" id="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" name="password" id="password" required>
+            </div>
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select class="form-select" name="role" id="role" required>
+                    <option value="">Select your role</option>
+                    <option value="admin">Admin</option>
+                    <option value="doctor">Doctor</option>
+                    <option value="receptionist">Receptionist</option>
+                    <option value="pharmacist">Pharmacist</option>
+                </select>
+            </div>
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+        <div class="text-center mt-3">
+            <a href="/" class="text-decoration-none">View Hospital Info</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

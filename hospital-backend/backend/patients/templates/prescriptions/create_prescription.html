@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Prescription | Shalom Primary Hospital</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Create Prescription for {{ patient.name }}</h2>
+    <div class="card shadow-sm p-4">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="notes" class="form-label">Notes</label>
+                <textarea name="notes" id="notes" class="form-control" rows="3"></textarea>
+            </div>
+
+            <h5>Medications</h5>
+            <div id="medications-container">
+                <div class="row mb-2 medication-row">
+                    <div class="col-md-4">
+                        <select name="medication" class="form-select" required>
+                            <option value="">Select Medication</option>
+                            {% for med in medications %}
+                                <option value="{{ med.id }}">{{ med.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" name="dosage" class="form-control" placeholder="Dosage" required>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="number" name="quantity" class="form-control" placeholder="Quantity" required>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" name="duration" class="form-control" placeholder="Duration">
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-danger remove-btn">Remove</button>
+                    </div>
+                </div>
+            </div>
+            <button type="button" id="add-med-btn" class="btn btn-secondary mb-3">Add Another Medication</button>
+            <br>
+            <button type="submit" class="btn btn-success">Create Prescription</button>
+            <a href="{% url 'prescription_list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.getElementById('add-med-btn').addEventListener('click', function() {
+    let container = document.getElementById('medications-container');
+    let row = container.firstElementChild.cloneNode(true);
+    row.querySelectorAll('input').forEach(input => input.value = '');
+    row.querySelector('select').selectedIndex = 0;
+    container.appendChild(row);
+});
+
+document.getElementById('medications-container').addEventListener('click', function(e) {
+    if(e.target.classList.contains('remove-btn')) {
+        let row = e.target.closest('.medication-row');
+        if(document.querySelectorAll('.medication-row').length > 1) {
+            row.remove();
+        }
+    }
+});
+</script>
+</body>
+</html>
